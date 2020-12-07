@@ -80,7 +80,7 @@ k =      [0.5 1.0 2.0 5.0 1.0 5.0];
 x = 0:0.01:4; 
 
 for i = 1:length(lambda)
-    leg3{i} = sprintf('λ = ', lambda(i), ', k = ', k(i));
+    leg3{i} = sprintf([sprintf('lambda = %.1f', lambda(i)) sprintf(', k = %.1f', k(i))]);
 end
 
 FDPW = zeros(length(x), length(lambda)); % Pre alocagem da matriz com os valores de FMP da distribuição de Weibull
@@ -90,35 +90,36 @@ for i = 1:length(lambda)
 end
 
 figure ('name', 'Distribuicao de Weibull: FDP.') % Plots da FDP de Weibull
-plot(x(2:length(x)), FDPW(2:length(FDPW(:,1)),1), '-k-');% Pulando o primeiro termo, que deve ser infinito
+plot(x(2:length(x)), FDPW(2:length(FDPW(:,1)),1), '-b-');% Pulando o primeiro termo, que deve ser infinito
 hold on;
-plot(x, FDPW(:,2), '-k-');
-plot(x, FDPW(:,3), '-k-');
-plot(x, FDPW(:,4), '-k-');
-plot(x, FDPW(:,5), '-k-');
-plot(x, FDPW(:,6), '-k-');
+plot(x, FDPW(:,2), '-r-');
+plot(x, FDPW(:,3), '-m-');
+plot(x, FDPW(:,4), '-g-');
+plot(x, FDPW(:,5), '-c-');
+plot(x, FDPW(:,6), '-y-');
 hold off;
 title('Distribuicao de Weibull: FDP.');
-legend = (leg3);
+legend(leg3);
 ylim([0, 2]);
 
 fprintf(" Plotando os graficos de FDP da distribuicao de Weibull.\n");
 pause(0.1); % Pause para forçar render dos gráficos
-
 
 for i = 1:length(lambda)
     FDAW(:, i) = FDAWeibull(x, k(i), lambda(i));
 end
 
 figure ('name', 'Distribuicao de Weibull: FDA.') % Plots da FDA de Weibull
-plot(x, FDAW(:,1), '-k-');
+plot(x, FDAW(:,1), '-b-');
 hold on;
-plot(x, FDAW(:,2), '-k-');
-plot(x, FDAW(:,3), '-k-');
-plot(x, FDAW(:,4), '-k-');
-plot(x, FDAW(:,5), '-k-');
-plot(x, FDAW(:,6), '-k-');
+plot(x, FDAW(:,2), '-r-');
+plot(x, FDAW(:,3), '-m-');
+plot(x, FDAW(:,4), '-g-');
+plot(x, FDAW(:,5), '-c-');
+plot(x, FDAW(:,6), '-y-');
 hold off;
+title('Distribuicao de Weibull: FDA.');
+legend(leg3,'Location','southeast');
 
 fprintf(" Plotando os graficos de FDA da distribuicao de Weibull.\n");
 pause(0.1); % Pause para forçar render dos gráficos
@@ -150,7 +151,9 @@ SR_4 = zeros(1,n);
 SR_6 = zeros(1,n);
 SR_10 = zeros(1,n);
 
-coluna = {"I_TR_1" "I_TR_4", "I_TR_6", "I_TR_10", "I_SR_2", "I_SR_4", "I_SR_6", "I_SR_10"};
+coluna = {"I-TR-1", "I-TR-4", "I-TR-6", "I-TR-10", "I-SR-2", "I-SR-4", "I-SR-6", "I-SR-10"};
+leg1 = {"Lambda = 1.0, k = 5.0", coluna{1:4}};
+leg2 = {"Lambda = 1.0, k = 5.0", coluna{5:8}};
 
 % Calculo dos valores aproximados
 for i = 1:n
@@ -200,26 +203,28 @@ fprintf("%.40s\n", sep);
 
 % Plots dos gráficos
 figure ('name', 'FDA e FDA por integracao numerica: Trapezios') % Plots da FDA de Weibull
-plot(x, FDAW2, '-k-');
+plot(x, FDAW2, '-g--');
 hold on;
-plot(x, TR_1, '-k-');
-plot(x, TR_4, '-k-');
-plot(x, TR_6, '-k-');
-plot(x, TR_10, '-k-');
-title("Distribuicao de Weibull: FDA e FDA por integracao numerica: Trapezios");
+plot(x, TR_1, '-r-');
+plot(x, TR_4, '-c-');
+plot(x, TR_6, '-m-');
+plot(x, TR_10, '-g-');
 hold off;
+title("Distribuicao de Weibull: FDA e FDA por integracao numerica: Trapezios");
+legend(leg1,'Location','northwest');
 
 fprintf(" Plotando os graficos de FDA de Weibull e aproximacoes de trapezios.\n");
 pause(0.1); % Pause para forçar render dos gráficos
 
 figure ('name', 'FDA e FDA por integracao numerica: Simpson 1/3') % Plots da FDA de Weibull
-plot(x, FDAW2, '-k-');
+plot(x, FDAW2, '-g--');
 hold on;
-plot(x, SR_2, '-k-');
-plot(x, SR_4, '-k-');
-plot(x, SR_6, '-k-');
-plot(x, SR_10, '-k-');
+plot(x, SR_2, '-r-');
+plot(x, SR_4, '-c-');
+plot(x, SR_6, '-m-');
+plot(x, SR_10, '-g-');
 title("Distribuicao de Weibull: FDA e FDA por integracao numerica: Simpson 1/3");
+legend(leg2,'Location','northwest');
 hold off;
 
 fprintf(" Plotando os graficos de FDA de Weibull e aproximacoes de Simpson.\n");
