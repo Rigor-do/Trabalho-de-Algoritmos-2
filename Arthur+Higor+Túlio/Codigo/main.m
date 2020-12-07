@@ -12,7 +12,7 @@ available_graphics_toolkits(); % Adiciona um pacote de alteração do gráfico
 graphics_toolkit gnuplot;
 
 % ------------------------------- 2.1 -------------------------------
-fprintf("--------------- Solucao - 2.1 ---------------\n");
+fprintf("\n--------------- Solucao - 2.1 ---------------\n");
 FProb = @(n,p) ((1-p).^n)*p; % Definição da função de probabilidade pra facilitar no futuro.
 n = 0:1:10; % Vetor de valores de amostras, será usado também futuramente nos plots
 
@@ -59,11 +59,11 @@ semilogy(n, FMP(:,3), 'or--');
 title('Funcao FDA para diferentes probabilidades em semilog de y.');
 legend(leg, 'Location','southwest');
 
-fprintf(" Plotando os graficos de FDA em escala de semilog\n");
+fprintf(" Plotando os graficos de FDA em escala de semilog.\n");
 pause(0.1); % Pause para forçar render dos gráficos
 
 % ------------------------------- 2.1.1 -------------------------------
-fprintf("--------------- Solucao - 2.1.1 ---------------\n");
+fprintf("\n--------------- Solucao - 2.1.1 -------------\n");
 printf('Chamando funcao meu_geornd com P = 0.5 e n = 20.\n')
 printf('meu_geornd(0.5,20)\n')
 k = meu_geornd(0.5,20);
@@ -71,7 +71,7 @@ printf('Retorno: ');
 k
 
 % ------------------------------- 3.1 -------------------------------
-fprintf("--------------- Solucao - 3.1 ---------------\n");
+fprintf("\n--------------- Solucao - 3.1 ---------------\n");
 FDPWeibull = @(x, k, lambda) (k/lambda).*((x/lambda).^(k-1)).*exp(-(x/lambda).^k); % Definição das funções de FDP e FDA de Weibull
 FDAWeibull = @(x, k, lambda) 1 - exp(-(x/lambda).^k);
 
@@ -98,10 +98,13 @@ plot(x, FDPW(:,4), '-k-');
 plot(x, FDPW(:,5), '-k-');
 plot(x, FDPW(:,6), '-k-');
 hold off;
-
+title('Distribuicao de Weibull: FDP.');
+legend = (leg3);
 ylim([0, 2]);
 
+fprintf(" Plotando os graficos de FDP da distribuicao de Weibull.\n");
 pause(0.1); % Pause para forçar render dos gráficos
+
 
 for i = 1:length(lambda)
     FDAW(:, i) = FDAWeibull(x, k(i), lambda(i));
@@ -117,7 +120,11 @@ plot(x, FDAW(:,5), '-k-');
 plot(x, FDAW(:,6), '-k-');
 hold off;
 
+fprintf(" Plotando os graficos de FDA da distribuicao de Weibull.\n");
+pause(0.1); % Pause para forçar render dos gráficos
+
 % ------------------------------- 3.1.1 e 3.1.2 -------------------------------
+fprintf("\n--------------- Solucao - 3.1.1 e 3.1.2 ---------------\n");
 %FDAWeibull = @(x, k, lambda) 1 - exp(-(x/lambda).^k); % Definição das funções de FDP e FDA de Weibull
 
 a = 0; b = 1;
@@ -161,7 +168,7 @@ for i = 1:n
 end
 resultados = [TR_1; TR_4; TR_6; TR_10; SR_2; SR_4; SR_6; SR_10;];
 
-fprintf("Tabela com resultados das aproximacoes de FDA com metodos de integracao\n");
+fprintf(" Tabela com resultados das aproximacoes de FDA com metodos de integracao\n");
 % Definição da divisão
 sep = repmat(['-'], 1, 50);
 % Print da divisão
@@ -202,6 +209,9 @@ plot(x, TR_10, '-k-');
 title("Distribuicao de Weibull: FDA e FDA por integracao numerica: Trapezios");
 hold off;
 
+fprintf(" Plotando os graficos de FDA de Weibull e aproximacoes de trapezios.\n");
+pause(0.1); % Pause para forçar render dos gráficos
+
 figure ('name', 'FDA e FDA por integracao numerica: Simpson 1/3') % Plots da FDA de Weibull
 plot(x, FDAW2, '-k-');
 hold on;
@@ -211,5 +221,8 @@ plot(x, SR_6, '-k-');
 plot(x, SR_10, '-k-');
 title("Distribuicao de Weibull: FDA e FDA por integracao numerica: Simpson 1/3");
 hold off;
+
+fprintf(" Plotando os graficos de FDA de Weibull e aproximacoes de Simpson.\n");
+pause(0.1); % Pause para forçar render dos gráficos
 
 % ------------------------------- 3.1.2 -------------------------------
