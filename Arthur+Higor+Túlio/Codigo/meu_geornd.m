@@ -37,8 +37,8 @@ end
 % print da comparação entre a probabilidade do resultado em comparação com a probabilidade real do evento.
 if(1)
     P_estimado = n./(n+sum(k));
-    printf("Diferenca entre o valor estimado e real da probabilidade:\n");
-    printf("Valor estimado: %.5f", P_estimado);
+    printf(" Diferenca entre o valor estimado e real da probabilidade:\n");
+    printf(" Valor estimado: %.5f", P_estimado);
     printf(" Valor real: %.5f", P);
     printf(" Erro: %.3e\n", abs(P_estimado - P));
 end
