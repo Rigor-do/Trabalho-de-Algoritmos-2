@@ -15,19 +15,28 @@ graphics_toolkit gnuplot;
 fprintf("\n--------------- Solucao - 2.1 ---------------\n");
 Solve2_1;
 
+fprintf("\nAperte enter para continuar");
+pause();
 % ------------------------------- 2.1.1 -------------------------------
 fprintf("\n--------------- Solucao - 2.1.1 -------------\n");
 Solve2_1_1
 
+fprintf("\nAperte enter para continuar");
+pause();
 % ------------------------------- 3.1 -------------------------------
 fprintf("\n--------------- Solucao - 3.1 ---------------\n");
 Solve3_1
 
+fprintf("\nAperte enter para continuar");
+pause();
 % ------------------------------- 3.1.1 e 3.1.2 -------------------------------
 fprintf("\n--------------- Solucao - 3.1.1 e 3.1.2 ---------------\n");
 Solve3_1_1e3_1_2
 
-% ------------------------------- 3.1.2 -------------------------------
-
+fprintf("\nAperte enter para continuar");
+pause();
+% ------------------------------- 3.2.1 e 3.2.2 -------------------------------
+fprintf("\n--------------- Solucao - 3.2.1 e 3.2.2 ---------------\n");
+Solve3_2_1e3_2_2
 
 fprintf("\n\n Finalizando... \n");

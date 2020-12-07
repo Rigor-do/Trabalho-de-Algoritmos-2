@@ -18,7 +18,7 @@ semente = 1234567890; % Seed escolhida pelo professor
 rand('seed', semente);
 
 m = 1000+n; % Número de amostras para a distribuição uniforme
-amostras = rand(round(sqrt(m))); % geração da matriz de valors aleatorios. O round é só para caso a pessoa escolha um valor com valor da raiz não inteira
+amostras = rand(ceil(sqrt(m))); % geração da matriz de valors aleatorios. O round é só para caso a pessoa escolha um valor com valor da raiz não inteira
 % boll_vec = zeros(1,m); % Desnecessário a prealocação do vetor
 
 bool_vec = amostras < P; % Filtro lógico do octave

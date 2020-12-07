@@ -7,15 +7,15 @@
 FDPWeibull = @(x, k, lambda) (k/lambda).*((x/lambda).^(k-1)).*exp(-(x/lambda).^k); % Definição das funções de FDP e FDA de Weibull
 FDAWeibull = @(x, k, lambda) 1 - exp(-(x/lambda).^k);
 
-a = 0; b = 1;
+a = 0; b = 1; % intervalos da integral
 lambda2 = 1.0;
 k2 =      5.0;
-h = 0.01;
+h = 0.01; % passo de x
 x = a:h:2.5;
 n = length(x);
-x_igual_1 = a + 1/h + 1;
+x_igual_1 = a + 1/h + 1; % pega index da posição onde x = 1
 
-wrapper_FDPWeibull = @(x) FDPWeibull(x, k2, lambda2);
+wrapper_FDPWeibull = @(x) FDPWeibull(x, k2, lambda2); % define função de 1 variável fixando k e lambda
 
 % Valores reais da função
 FDAW2 = FDAWeibull(x, k2, lambda2);
@@ -30,6 +30,7 @@ SR_4 = zeros(1,n);
 SR_6 = zeros(1,n);
 SR_10 = zeros(1,n);
 
+% Legendas
 coluna = {"I-TR-1", "I-TR-4", "I-TR-6", "I-TR-10", "I-SR-2", "I-SR-4", "I-SR-6", "I-SR-10"};
 leg1 = {"Lambda = 1.0, k = 5.0", coluna{1:4}};
 leg2 = {"Lambda = 1.0, k = 5.0", coluna{5:8}};
@@ -48,8 +49,9 @@ for i = 1:n
     SR_6(i) = integralSimpsonRepetidaFunc(wrapper_FDPWeibull, a, x(i), 6, false);
     SR_10(i) = integralSimpsonRepetidaFunc(wrapper_FDPWeibull, a, x(i), 10, false);
 end
-resultados = [TR_1; TR_4; TR_6; TR_10; SR_2; SR_4; SR_6; SR_10;];
+resultados = [TR_1; TR_4; TR_6; TR_10; SR_2; SR_4; SR_6; SR_10;]; % Matrix resultados
 
+% -------- Print da tabela
 fprintf(" Tabela com resultados das aproximacoes de FDA com metodos de integracao\n");
 % Definição da divisão
 sep = repmat(['-'], 1, 50);
@@ -57,7 +59,7 @@ sep = repmat(['-'], 1, 50);
 fprintf("%.40s\n", sep);
 % Print da primeira linha
 p1 = sprintf("%.28s", sprintf("%-28s", "Valor exato em x = 1"));
-p2 = sprintf("%.14s", sprintf("%-12s", sprintf("%.3e",FDAW2(x_igual_1))));
+p2 = sprintf("%.14s", sprintf("%-14s", sprintf("%.3e",FDAW2(x_igual_1))));
 linha = [p1 p2 '\n'];
 fprintf(linha);
 % Print da segunda linha
@@ -79,6 +81,7 @@ for i = 1:8
 end
 % Print da divisão
 fprintf("%.40s\n\n", sep);
+% -------- Fim print da tabela
 
 % Plots dos gráficos
 figure ('name', 'FDA e FDA por integracao numerica: Trapezios') % Plots da FDA de Weibull
