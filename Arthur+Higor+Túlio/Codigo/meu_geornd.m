@@ -21,7 +21,7 @@ m = 1000+n; % Número de amostras para a distribuição uniforme
 amostras = rand(ceil(sqrt(m))); % geração da matriz de valors aleatorios. O round é só para caso a pessoa escolha um valor com valor da raiz não inteira
 % boll_vec = zeros(1,m); % Desnecessário a prealocação do vetor
 
-bool_vec = amostras < P; % Filtro lógico do octave
+bool_vec = amostras > P; % Filtro lógico do octave
 k = zeros(1,n); % Pré alocagem de k
 
 i = 1; j = 1; % i é o index que percorre o vetor de amostras e j é a posição no vetor de saída.

@@ -47,7 +47,7 @@ semilogy(n, FMP(:,1), 'om--');
 hold on;
 semilogy(n, FMP(:,2), 'og--');
 semilogy(n, FMP(:,3), 'or--');
-title('Funcao FDA para diferentes probabilidades em semilog de y.');
+title('Funcao FMP para diferentes probabilidades em semilog de y.');
 legend(leg, 'Location','southwest');
 
 fprintf(" Plotando os graficos de FDA em escala de semilog.\n");

@@ -13,7 +13,7 @@ k2 =      5.0;
 h = 0.01; % passo de x
 x = a:h:2.5;
 n = length(x);
-x_igual_1 = a + 1/h + 1; % pega index da posição onde x = 1
+x_igual_1 = (1-a)/h + 1; % pega index da posição onde x = 1
 
 wrapper_FDPWeibull = @(x) FDPWeibull(x, k2, lambda2); % define função de 1 variável fixando k e lambda
 
